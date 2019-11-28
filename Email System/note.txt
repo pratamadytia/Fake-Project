@@ -1,0 +1,11 @@
+pert 12 -> quiz 2
+bikin diagram + coding (mvc yg udah komplit)
+-waktu bakal mepet bgt (100 menit)
+-codingan quiz bakal mirip bgt sama codingan hari ini
+
+*dari codingan:
+-di quiz 2, bisa aja di mail ada arraylist attachment
++tambahin:
+	write email
+	bla bla bla
+	intinya lengkapin aja codingannya
