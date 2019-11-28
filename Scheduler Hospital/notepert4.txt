@@ -1,0 +1,9 @@
+*dalam relasi class, class yang menjadi foreign key dari class lain adalah class yang multiplicitynya sedikit  (1) dibanding class lain yang berhubungan dengannya.
+misalkan:
+ doktor (1)-----(0..*)skeduldokter
+-dokter menjadi foreign key dari skeduldokter
+
+*quiz nanti:
+-dikasih gambar jpg
+-buat dalam bentuk visio
+-buat dalam bentuk java
