@@ -1,0 +1,125 @@
+#include<stdio.h>
+#include<string.h>
+
+int totalProduct = 0;
+
+struct Product{
+	char name[30],brand[10];
+	int qty,price;
+}productList[100];
+
+void main(){
+	int menu;
+
+	do{
+		printf("    Product Name              Brand      Quantity   Price\n");
+		printf("    ============              =====      ========   =====\n");
+		
+		if(totalProduct==0)
+			printf("No Product!!!");
+		else{
+			for(int i=0;i<totalProduct;i++){
+				printf(" %d. %s\t\t  %s\t %d \t $USD. %d\n",i+1,productList[i].name,productList[i].brand,productList[i].qty,productList[i].price);
+			}
+		}
+
+		printf("\n");
+		printf("\n");
+		printf("e-Store Smartphone\n");
+		printf("===========\n");
+		printf("1. Search product\n");
+		printf("2. Sort by price ascending\n");
+		printf("3. Insert product\n");
+		printf("4. Delete product\n");
+		printf("5. Save and exit\n");
+
+		do{
+			printf("Insert menu :\n");
+			scanf("%d",&menu);fflush(stdin);
+		}
+		while(menu<1||menu>5);
+
+		switch (menu){
+		case 1:
+			char keyword[100];
+			printf("Insert keyword : ");
+			scanf("%[^\n]",&keyword);fflush(stdin);
+
+			for(int i=0;i<totalProduct;i++){
+				if(strstr(productList[i].name,keyword)!=0){
+					printf("%s\t%s\t%d\t%d\n",productList[i].name,productList[i].brand,productList[i].qty,productList[i].price);
+				}
+			}
+
+			getchar();
+			break;
+
+		case 2:
+
+			Product tempProduct;
+
+			for(int i=0;i<totalProduct;i++){
+				for(int j=i+1;j<totalProduct;j++){
+					if(productList[i].price>productList[j].price){
+						tempProduct = productList[i];
+						productList[i] = productList[j];
+						productList[j] = tempProduct;
+					}
+				}
+			}
+
+			break;
+		
+		case 3:
+			char name[50],brand[10];
+			int qty,price;
+
+			do{
+				printf("Insert product name [2..50] : ");
+				scanf("%[^\n]",&name);fflush(stdin);
+			}
+			while(strlen(name)<2||strlen(name)>50);
+
+			do{
+				printf("Insert brand [Samsung/HTC/Apple] : ");
+				scanf("%s",&brand);fflush(stdin);
+			}
+			while(strcmp(brand,"Samsung")!=0 && strcmp(brand,"HTC")!=0 && strcmp(brand,"Apple")!=0);
+
+			do{
+				printf("Insert quantity [1..100] : ");
+				scanf("%d",&qty);fflush(stdin);
+			}
+			while(qty<1||qty>100);
+
+			do{
+				printf("Insert price [100..2000] : $USD ");
+				scanf("%d",&price);fflush(stdin);
+			}
+			while(price<100||price>2000);
+
+			strcpy(productList[totalProduct].name,name);
+			strcpy(productList[totalProduct].brand,brand);
+			productList[totalProduct].price = price;
+			productList[totalProduct].qty = qty;
+			totalProduct++;
+
+			break;   
+		case 4:
+			int temp;
+			printf("No. of product [1..%d] : ",totalProduct);
+			scanf("%d",&temp);fflush(stdin);
+
+			for(int i=(temp-1);i<totalProduct;i++)
+			{
+				productList[i] = productList[i+1];
+			}
+			totalProduct--;
+
+			break;
+		}
+
+	}
+	while(menu!=5);
+
+}
